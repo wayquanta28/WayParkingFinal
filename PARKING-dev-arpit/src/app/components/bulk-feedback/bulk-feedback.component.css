@@ -1,0 +1,35 @@
+.popup-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.5);  /* Semi-transparent black */
+    z-index: 1009;  /* Place it above everything */
+  }
+  .bulk-feedback {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1001;  /* Higher than the overlay */
+    background-color: #ffffff;  /* Solid white background */
+    padding: 20px;
+    border-radius: 8px;
+    width: 600px;
+    max-height: 90vh;  /* Limit height for scrollbar */
+    overflow-y: auto;  /* Enable vertical scrollbar */
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1010;
+    }
+    .bulk-feedback .button-container {
+      margin-top: 15px;
+  }
+  
+  .bulk-feedback button {
+      margin-right: 10px;
+      padding: 8px 16px;
+      font-size: 14px;
+      cursor: pointer;
+  }
+  

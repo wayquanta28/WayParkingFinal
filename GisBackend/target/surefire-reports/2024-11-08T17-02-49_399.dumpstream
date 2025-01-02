@@ -1,0 +1,5 @@
+# Created at 2024-11-08T17:02:49.730
+Boot Manifest-JAR contains absolute paths in classpath 'E:\TestingEnv\ParkingGisBackend\GisBackend\target\test-classes'
+Hint: <argLine>-Djdk.net.URLClassPath.disableClassPathURLCheck=true</argLine>
+'other' has different root
+

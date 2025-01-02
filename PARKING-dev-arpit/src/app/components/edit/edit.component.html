@@ -1,0 +1,57 @@
+<!-- Overlay background -->
+<div class="popup-overlay" (click)="goBack()"></div>
+
+<!-- Popup modal content -->
+<div class="edit-container">
+    <h2>Edit Data</h2>
+    <form (ngSubmit)="onSubmit()" #editForm="ngForm" class="edit-form">
+
+      <!-- Common properties section -->
+      <div class="form-group" *ngFor="let prop of getCommonPropertyKeys()">
+        <label [for]="prop">{{ prop | titlecase }}:</label>
+        <input
+          type="text"
+          id="{{ prop }}"
+          [(ngModel)]="properties[prop]"
+          name="{{ prop }}"
+          required
+          class="form-control"
+          (ngModelChange)="onPropertyChange(prop, $event)"
+        />
+      </div>
+      
+      <!-- Unique Properties -->
+      <div class="form-group" *ngFor="let prop of getUniquePropertyKeys()">
+        <label [for]="prop">{{ prop | titlecase }}:</label>
+        <input
+          type="text"
+          id="{{ prop }}"
+          [(ngModel)]="properties[prop]"
+          name="{{ prop }}"
+          required
+          class="form-control"
+          (ngModelChange)="onPropertyChange(prop, $event)"
+        />
+      </div>
+      
+      <!-- Unique Metadata Properties -->
+      <div class="form-group" *ngFor="let prop of getUniqueMetadataPropertyKeys()">
+        <label [for]="prop">{{ prop | titlecase }}:</label>
+        <input
+          type="text"
+          id="{{ prop }}"
+          [(ngModel)]="metadataProperties[prop]"
+          name="{{ prop }}"
+          required
+          class="form-control"
+          (ngModelChange)="onMetadataPropertyChange(prop, $event)"
+        />
+      </div>
+
+      <!-- Button group for saving or cancelling -->
+      <div class="button-group">
+        <button type="submit" class="btn btn-submit">Save Changes</button>
+        <button type="button" (click)="goBack()" class="btn btn-cancel">Cancel</button>
+      </div>
+    </form>
+  </div>

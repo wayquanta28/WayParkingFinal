@@ -1,0 +1,79 @@
+<div class="modal-overlay fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 transition-opacity duration-300 ease-in-out" *ngIf="isVisible">
+  <div class="modal-content bg-white rounded-lg shadow-lg p-4 w-full max-w-sm relative transform transition-all duration-300 ease-in-out scale-95 opacity-0"
+       [ngClass]="{'scale-100 opacity-100': isVisible, 'scale-95 opacity-0': !isVisible}">
+
+    <!-- Popup for Record Rejected Successfully -->
+    <div class="fixed top-0 left-1/2 transform -translate-x-1/2 z-50 mt-4" *ngIf="showRejectPopup">
+      <div class="bg-red-500 text-white p-4 rounded-lg shadow-lg flex items-center transition-all duration-300 ease-in-out">
+        <svg class="w-6 h-6 mr-2" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12H9m6 0l-3-3m3 3l-3 3" />
+        </svg>
+        <span class="font-semibold text-lg">Record rejected successfully!</span>
+      </div>
+    </div>
+
+    <!-- Close Button -->
+    <button 
+      (click)="closeModal()" 
+      class="absolute top-2 right-2 text-gray-600 hover:bg-gray-200 rounded-full p-2 transition duration-200 ease-in-out transform hover:scale-110 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-opacity-50"
+      aria-label="Close modal">
+      <span class="text-2xl transition duration-300 ease-in-out transform hover:rotate-180">×</span>
+    </button>
+
+    <h2 class="text-xl font-semibold text-gray-800 mb-4 text-center transition duration-300 transform" [ngClass]="{'translate-y-0': isVisible, 'translate-y-4': !isVisible}">Reason for Rejection</h2>
+
+    <form>
+      <div class="rejection-options mb-4">
+        <div *ngFor="let reason of rejectionReasons" class="option mb-2 flex items-center transition duration-300 transform" 
+             [ngClass]="{'translate-y-0 opacity-100': isVisible, 'translate-y-2 opacity-50': !isVisible}">
+          <input 
+            type="radio" 
+            [id]="reason.id" 
+            name="rejectionReason"  
+            [(ngModel)]="selectedReason" 
+            [value]="reason.value"
+            class="form-radio h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 transition duration-150 ease-in-out transform hover:scale-110">
+          <label [for]="reason.id" class="ml-2 text-gray-700 text-md cursor-pointer transition duration-150 ease-in-out hover:text-indigo-600">{{ reason.label }}</label>
+        </div>
+
+        <!-- Other Reason Option -->
+        <div class="option mb-2 flex items-center transition duration-300 transform" 
+             [ngClass]="{'translate-y-0 opacity-100': isVisible, 'translate-y-2 opacity-50': !isVisible}">
+          <input 
+            type="radio" 
+            id="otherReason" 
+            name="rejectionReason"  
+            [(ngModel)]="selectedReason" 
+            value="Other"
+            class="form-radio h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 transition duration-150 ease-in-out transform hover:scale-110">
+          <label for="otherReason" class="ml-2 text-gray-700 text-md cursor-pointer transition duration-150 ease-in-out hover:text-indigo-600">Other</label>
+        </div>
+        
+        <!-- Input for Custom Reason -->
+        <input 
+          *ngIf="selectedReason === 'Other'" 
+          [(ngModel)]="customReason" 
+          placeholder="Enter your reason..." 
+          class="mt-2 p-2 border border-gray-300 rounded-md w-full focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 transition duration-150 ease-in-out transform" 
+          maxlength="100" 
+          name="customReason" 
+          [ngModelOptions]="{standalone: true}" /> 
+      </div>
+      <div class="modal-actions flex justify-between mt-2">
+        <button 
+          type="button" 
+          (click)="submitReason()" 
+          class="bg-indigo-600 text-white py-1 px-3 rounded-md shadow hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 transition duration-150 ease-in-out transform hover:scale-105">
+          <span *ngIf="isLoading">Submitting...</span>
+          <span *ngIf="!isLoading">Submit</span>
+        </button>
+        <button 
+          type="button" 
+          (click)="closeModal()" 
+          class="bg-gray-300 text-gray-800 py-1 px-3 rounded-md shadow hover:bg-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-500 transition duration-150 ease-in-out transform hover:scale-105">
+          Cancel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
