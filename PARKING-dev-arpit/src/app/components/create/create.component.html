@@ -1,0 +1,286 @@
+<div class="popup-overlay" (click)="goBack()"></div>
+<div class="create-container mx-auto max-w-lg p-6 bg-white shadow-lg rounded-lg mt-10">
+    <form (ngSubmit)="onSubmit()" #parkingForm="ngForm">
+        <div class="flex justify-between items-center mb-4">
+
+            <!-- Heading -->
+            <h1 class="text-2xl font-bold text-gray-800 bg-gray-100 rounded-lg py-2 shadow-md transition duration-300 hover:bg-gray-200 w-full flex items-center justify-between px-4">
+                <span class="flex-grow text-center">Add Data</span>
+                <button
+                    class="text-gray-500 hover:text-white hover:bg-gray-700 rounded-full p-1 transition duration-200 ease-in-out"
+                    (click)="goBack()" aria-label="Close">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                        stroke="currentColor">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                </button>
+            </h1>
+            
+        </div>
+
+        <!-- Form Group -->
+        <div class="grid grid-cols-1 gap-6">
+            <!-- Zone Name -->
+            <div class="form-group">
+                <label for="zoneName" class="block text-sm font-medium text-gray-700">Zone Name:</label>
+                <input type="text" id="zoneName" [(ngModel)]="metadataProperties.zone_name" name="zoneName" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Zone Name" />
+            </div>
+
+            <!-- Zone Number -->
+            <div class="form-group">
+                <label for="zoneNumber" class="block text-sm font-medium text-gray-700">Zone Number:</label>
+                <input type="number" id="zoneNumber" [(ngModel)]="metadataProperties.zone_number" name="zoneNumber" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Zone Number" />
+            </div>
+
+            <!-- Category -->
+            <div class="form-group">
+                <label for="category" class="block text-sm font-medium text-gray-700">Category:</label>
+                <input type="text" id="category" [(ngModel)]="metadataProperties.category" name="category" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Category" />
+            </div>
+
+            <!-- Max Time Limit -->
+            <div class="form-group">
+                <label for="maxTimeLimit" class="block text-sm font-medium text-gray-700">Max Time Limit (in minutes):</label>
+                <input type="number" id="maxTimeLimit" [(ngModel)]="metadataProperties.max_time_limit" name="maxTimeLimit" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Max Time Limit" />
+            </div>
+
+            <!-- Street -->
+            <div class="form-group">
+                <label for="street" class="block text-sm font-medium text-gray-700">Street:</label>
+                <input type="text" id="street" [(ngModel)]="metadataProperties.street" name="street" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Street" />
+            </div>
+
+            <!-- Address -->
+            <div class="form-group">
+                <label for="address" class="block text-sm font-medium text-gray-700">Address:</label>
+                <input type="text" id="address" [(ngModel)]="metadataProperties.address" name="address" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Address" />
+            </div>
+
+            <!-- Alias -->
+            <div class="form-group">
+                <label for="alias" class="block text-sm font-medium text-gray-700">Alias:</label>
+                <input type="text" id="alias" [(ngModel)]="metadataProperties.alias" name="alias" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Alias" />
+            </div>
+
+            <!-- Place Name -->
+            <div class="form-group">
+                <label for="placeName" class="block text-sm font-medium text-gray-700">Place Name:</label>
+                <input type="text" id="placeName" [(ngModel)]="metadataProperties.place_name" name="placeName" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Place Name" />
+            </div>
+
+            <!-- City -->
+            <div class="form-group">
+                <label for="city" class="block text-sm font-medium text-gray-700">City:</label>
+                <input type="text" id="city" [(ngModel)]="metadataProperties.city" name="city" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter City" />
+            </div>
+
+            <!-- State -->
+            <div class="form-group">
+                <label for="state" class="block text-sm font-medium text-gray-700">State:</label>
+                <input type="text" id="state" [(ngModel)]="metadataProperties.state" name="state" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter State" />
+            </div>
+
+            <!-- Country -->
+            <div class="form-group">
+                <label for="country" class="block text-sm font-medium text-gray-700">Country:</label>
+                <input type="text" id="country" [(ngModel)]="metadataProperties.country" name="country" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Country" />
+            </div>
+
+            <!-- Zipcode -->
+            <div class="form-group">
+                <label for="zipcode" class="block text-sm font-medium text-gray-700">Zipcode:</label>
+                <input type="text" id="zipcode" [(ngModel)]="metadataProperties.zipcode" name="zipcode" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Zipcode" />
+            </div>
+
+            <!-- Parking Hours -->
+            <div class="form-group">
+                <label for="parkingHours" class="block text-sm font-medium text-gray-700">Parking Hours:</label>
+                <input type="text" id="parkingHours" [(ngModel)]="metadataProperties.parking_hours" name="parkingHours" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Parking Hours" />
+            </div>
+
+            <!-- Cleaning Hours -->
+            <div class="form-group">
+                <label for="cleaningHours" class="block text-sm font-medium text-gray-700">Cleaning Hours:</label>
+                <input type="text" id="cleaningHours" [(ngModel)]="metadataProperties.cleaning_hours" name="cleaningHours" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Cleaning Hours" />
+            </div>
+
+            <!-- Risk Level -->
+            <div class="form-group">
+                <label for="riskLevel" class="block text-sm font-medium text-gray-700">Risk Level:</label>
+                <input type="text" id="riskLevel" [(ngModel)]="metadataProperties.risk_level" name="riskLevel" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Risk Level" />
+            </div>
+
+            <!-- Safety Rank -->
+            <div class="form-group">
+                <label for="safetyRank" class="block text-sm font-medium text-gray-700">Safety Rank:</label>
+                <input type="text" id="safetyRank" [(ngModel)]="metadataProperties.safety_rank" name="safetyRank" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Safety Rank" />
+            </div>
+
+            <!-- Availability -->
+            <div class="form-group">
+                <label for="availability" class="block text-sm font-medium text-gray-700">Availability:</label>
+                <input type="text" id="availability" [(ngModel)]="metadataProperties.availability" name="availability" required class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Availability" />
+            </div>
+
+            <!-- Signpost URL -->
+            <div class="form-group">
+                <label for="signpostUrl" class="block text-sm font-medium text-gray-700">Signpost URL:</label>
+                <input type="url" id="signpostUrl" [(ngModel)]="metadataProperties.signpost_url" name="signpostUrl" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Signpost URL" />
+            </div>
+
+            <!-- Image URL -->
+            <div class="form-group">
+                <label for="imageUrl" class="block text-sm font-medium text-gray-700">Image URL:</label>
+                <input type="url" id="imageUrl" [(ngModel)]="metadataProperties.image_url" name="imageUrl" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Image URL" />
+            </div>
+
+            <!-- Rating Value -->
+            <div class="form-group">
+                <label for="ratingValue" class="block text-sm font-medium text-gray-700">Rating Value:</label>
+                <input type="number" step="0.1" id="ratingValue" [(ngModel)]="metadataProperties.rating_value" name="ratingValue" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Rating Value" />
+            </div>
+
+            <!-- Rating Count -->
+            <div class="form-group">
+                <label for="ratingCount" class="block text-sm font-medium text-gray-700">Rating Count:</label>
+                <input type="number" id="ratingCount" [(ngModel)]="metadataProperties.rating_count" name="ratingCount" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Rating Count" />
+            </div>
+
+            <!-- Tow Away Zone Hours -->
+            <div class="form-group">
+                <label for="towAwayZoneHours" class="block text-sm font-medium text-gray-700">Tow Away Zone Hours:</label>
+                <input type="text" id="towAwayZoneHours" [(ngModel)]="metadataProperties.tow_away_zone_hours" name="towAwayZoneHours" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Tow Away Zone Hours" />
+            </div>
+
+            <!-- Kerb Color -->
+            <div class="form-group">
+                <label for="kerbColor" class="block text-sm font-medium text-gray-700">Kerb Color:</label>
+                <input type="text" id="kerbColor" [(ngModel)]="metadataProperties.kerb_color" name="kerbColor" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Kerb Color" />
+            </div>
+
+            <!-- Prices -->
+            <div class="form-group">
+                <label for="prices" class="block text-sm font-medium text-gray-700">Prices:</label>
+                <input type="text" id="prices" [(ngModel)]="metadataProperties.prices" name="prices" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Prices" />
+            </div>
+
+            <!-- Streetview URL -->
+            <div class="form-group">
+                <label for="streetviewUrl" class="block text-sm font-medium text-gray-700">Streetview URL:</label>
+                <input type="url" id="streetviewUrl" [(ngModel)]="metadataProperties.streetview_url" name="streetviewUrl" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Streetview URL" />
+            </div>
+
+            <!-- Total Space Count -->
+            <div class="form-group">
+                <label for="totalSpaceCount" class="block text-sm font-medium text-gray-700">Total Space Count:</label>
+                <input type="number" id="totalSpaceCount" [(ngModel)]="metadataProperties.total_space_count" name="totalSpaceCount" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Total Space Count" />
+            </div>
+
+            <!-- Available Space Count -->
+            <div class="form-group">
+                <label for="availableSpaceCount" class="block text-sm font-medium text-gray-700">Available Space Count:</label>
+                <input type="number" id="availableSpaceCount" [(ngModel)]="metadataProperties.available_space_count" name="availableSpaceCount" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Available Space Count" />
+            </div>
+
+            <!-- ADA Available Spaces -->
+            <div class="form-group">
+                <label for="adaAvailableSpaces" class="block text-sm font-medium text-gray-700">ADA Available Spaces:</label>
+                <input type="number" id="adaAvailableSpaces" [(ngModel)]="metadataProperties.ada_available_spaces" name="adaAvailableSpaces" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter ADA Available Spaces" />
+            </div>
+
+            <!-- EV Charging Spaces -->
+            <div class="form-group">
+                <label for="evChargingSpaces" class="block text-sm font-medium text-gray-700">EV Charging Spaces:</label>
+                <input type="number" id="evChargingSpaces" [(ngModel)]="metadataProperties.ev_charging_spaces" name="evChargingSpaces" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter EV Charging Spaces" />
+            </div>
+
+            <!-- Enforcement Validation -->
+            <div class="form-group">
+                <label for="enforcementValidation" class="block text-sm font-medium text-gray-700">Enforcement Validation:</label>
+                <input type="text" id="enforcementValidation" [(ngModel)]="metadataProperties.enforcement_validation" name="enforcementValidation" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Enforcement Validation" />
+            </div>
+
+            <!-- Time Limit Exception -->
+            <div class="form-group">
+                <label for="timeLimitException" class="block text-sm font-medium text-gray-700">Time Limit Exception:</label>
+                <input type="text" id="timeLimitException" [(ngModel)]="metadataProperties.time_limit_exception" name="timeLimitException" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Time Limit Exception" />
+            </div>
+
+            <!-- Shape -->
+            <div class="form-group">
+                <label for="shape" class="block text-sm font-medium text-gray-700">Shape:</label>
+                <input type="text" id="shape" [(ngModel)]="metadataProperties.shape" name="shape" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Shape" />
+            </div>
+
+            <!-- Last Modified By -->
+            <div class="form-group">
+                <label for="lastModifiedBy" class="block text-sm font-medium text-gray-700">Last Modified By:</label>
+                <input type="text" id="lastModifiedBy" [(ngModel)]="metadataProperties.last_modified_by" name="lastModifiedBy" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Last Modified By" />
+            </div>
+
+            <!-- Capacity -->
+            <div class="form-group">
+                <label for="capacity" class="block text-sm font-medium text-gray-700">Capacity:</label>
+                <input type="number" id="capacity" [(ngModel)]="metadataProperties.capacity" name="capacity" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Capacity" />
+            </div>
+
+            <!-- Available -->
+            <div class="form-group">
+                <label for="available" class="block text-sm font-medium text-gray-700">Available:</label>
+                <input type="number" id="available" [(ngModel)]="metadataProperties.available" name="available" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Available" />
+            </div>
+
+            <!-- Timing -->
+            <div class="form-group">
+                <label for="timing" class="block text-sm font-medium text-gray-700">Timing:</label>
+                <input type="text" id="timing" [(ngModel)]="metadataProperties.timing" name="timing" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Timing" />
+            </div>
+
+            <!-- Regulation -->
+            <div class="form-group">
+                <label for="regulation" class="block text-sm font-medium text-gray-700">Regulation:</label>
+                <input type="text" id="regulation" [(ngModel)]="metadataProperties.regulation" name="regulation" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Regulation" />
+            </div>
+
+            <!-- Cleaning -->
+            <div class="form-group">
+                <label for="cleaning" class="block text-sm font-medium text-gray-700">Cleaning:</label>
+                <input type="text" id="cleaning" [(ngModel)]="metadataProperties.cleaning" name="cleaning" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Cleaning" />
+            </div>
+
+            <!-- Suspension -->
+            <div class="form-group">
+                <label for="suspension" class="block text-sm font-medium text-gray-700">Suspension:</label>
+                <input type="text" id="suspension" [(ngModel)]="metadataProperties.suspension" name="suspension" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Suspension" />
+            </div>
+
+            <!-- Level -->
+            <div class="form-group">
+                <label for="level" class="block text-sm font-medium text-gray-700">Level:</label>
+                <input type="text" id="level" [(ngModel)]="metadataProperties.level" name="level" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Level" />
+            </div>
+
+            <!-- Remark -->
+            <div class="form-group">
+                <label for="remark" class="block text-sm font-medium text-gray-700">Remark:</label>
+                <input type="text" id="remark" [(ngModel)]="metadataProperties.remark" name="remark" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Remark" />
+            </div>
+
+            <!-- Image Path -->
+            <div class="form-group">
+                <label for="imgpath" class="block text-sm font-medium text-gray-700">Image Path:</label>
+                <input type="text" id="imgpath" [(ngModel)]="metadataProperties.imgpath" name="imgpath" class="mt-1 p-2 border border-gray-300 rounded-md w-full" placeholder="Enter Image Path" />
+            </div>
+        </div>
+        <div class="modal-footer">
+            <div class="flex justify-end space-x-4 mt-6">
+                <button type="button"
+                    class="bg-gray-500 text-white px-4 py-2 rounded shadow hover:bg-gray-600 focus:outline-none focus:ring-2 focus:ring-gray-400"
+                    (click)="goBack()">Back</button>
+                <button type="submit"
+                    class="bg-blue-500 text-white px-4 py-2 rounded shadow hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-400">Add</button>
+            </div>
+
+        </div>
+    </form>
+</div>

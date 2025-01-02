@@ -1,0 +1,113 @@
+/* Overlay that covers the screen */
+.popup-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.3);  /* Semi-transparent black, allows background to be visible */
+  z-index: 1000;  /* Place it above everything */
+  pointer-events: none;  /* Prevent clicks on overlay */
+}
+
+/* Modal container */
+.edit-container {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1001;  /* Higher than the overlay */
+  background-color: #ffffff;  /* Solid white background */
+  padding: 30px;
+  border-radius: 12px;
+  width: 600px;  /* Increased width for better content display */
+  max-height: 85vh;  /* Limit height for scrollbar */
+  overflow-y: auto;  /* Enable vertical scrollbar if needed */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);  /* More dramatic shadow for depth */
+  transition: all 0.3s ease-in-out;
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* Animation for smooth fade-in */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -45%);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%);
+  }
+}
+
+/* Form styling */
+.edit-container h2 {
+  font-size: 1.5rem;  /* Larger, bold heading */
+  font-weight: bold;
+  color: #111827;  /* Darker text for better contrast */
+  text-align: center;
+  margin-bottom: 20px;  /* Spacing below heading */
+}
+
+.edit-container .form-group {
+  margin-bottom: 15px;  /* Increased spacing between form fields */
+}
+
+.edit-container label {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #374151;  /* Medium dark gray for labels */
+}
+
+.edit-container input {
+  width: 100%;
+  padding: 12px;  /* Larger padding for input fields */
+  border: 1px solid #d1d5db;  /* Light gray border */
+  border-radius: 8px;  /* Softer corners */
+  background-color: #fff;  /* White background */
+  color: #111827;  /* Darker text for contrast */
+  font-size: 1rem;
+  transition: border-color 0.2s ease;  /* Smooth transition for focus */
+}
+
+.edit-container input:focus {
+  outline: none;
+  border-color: #3b82f6;  /* Blue border on focus */
+  box-shadow: 0 0 5px rgba(59, 130, 246, 0.5);  /* Light shadow on focus */
+}
+
+/* Button group styling */
+.button-group {
+  display: flex;
+  justify-content: flex-end;  /* Align buttons to the right */
+  margin-top: 20px;  /* Spacing above the buttons */
+}
+
+.button-group button {
+  padding: 10px 20px;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.button-group .btn-submit {
+  background-color: #3b82f6;  /* Bright blue for save button */
+  color: #fff;  /* White text */
+  margin-right: 10px;  /* Spacing between buttons */
+}
+
+.button-group .btn-submit:hover {
+  background-color: #2563eb;  /* Darker blue on hover */
+}
+
+.button-group .btn-cancel {
+  background-color: #6b7280;  /* Neutral gray for cancel button */
+  color: #fff;
+}
+
+.button-group .btn-cancel:hover {
+  background-color: #4b5563;  /* Darker gray on hover */
+}

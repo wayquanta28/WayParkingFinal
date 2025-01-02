@@ -1,0 +1,151 @@
+
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet" crossorigin="anonymous">
+
+
+<div id="map" ></div>
+<div id="dialog-container" class="dialog-container fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-[1007] bg-white p-10 rounded-3xl shadow-2xl flex flex-col items-center space-y-6 transition-all duration-500 ease-in-out hidden scale-75 hover:scale-100 hover:opacity-100">
+  <h3 class="text-3xl font-semibold text-gray-800 text-center animate__animated animate__fadeIn animate__delay-1s">
+    Select an Option
+  </h3>
+  <button id="bulk-upload-option" class="w-full bg-gradient-to-r from-blue-500 to-blue-700 text-white py-3 rounded-lg hover:from-blue-700 hover:to-blue-500 focus:outline-none focus:ring-2 focus:ring-blue-300 transition duration-300 transform hover:scale-105 shadow-xl">
+    Bulk Upload
+  </button>
+  <button id="bulk-feedback-option" class="w-full bg-gradient-to-r from-green-500 to-green-700 text-white py-3 rounded-lg hover:from-green-700 hover:to-green-500 focus:outline-none focus:ring-2 focus:ring-green-300 transition duration-300 transform hover:scale-105 shadow-xl">
+    Bulk Feedback
+  </button>
+</div>
+
+<button id="handCursorButton" class="hand-cursor-button"><i class="fas fa-hand-paper"></i></button> <!-- Your button -->
+<div id="feature-info-table">
+  <table class="feature-info-table">
+    <thead>
+      <tr>
+      </tr>
+    </thead>
+    <tbody>
+    </tbody>
+  </table>
+</div>
+
+  <div class="container" style="
+    position: absolute;
+    top: 0; /* Align to the top of the map */
+    left: 0; /* Align to the left of the map */
+    z-index: 1002; /* Ensure it appears above the map */
+    background: transparent; /* Background color for better visibility */
+    padding: 0; /* Optional: Add some padding */
+    width: 280px;
+    background-color: transparent;
+    margin-left: 0%;
+  ">
+<div class="search-bar">
+  <input type="text" id="searchInput" placeholder="Search" list="placeNames">
+  <datalist id="placeNames"></datalist>
+  <button id="searchButton" class="search-btn" aria-label="Search">
+    <i class="fa fa-search"></i> <!-- Font Awesome search icon -->
+  </button>
+</div>
+    <div id="sidebar" class="sidebar">
+      <!-- <a href="javascript:void(0)" class="closebtn" onclick="closeSidebar()">
+        <i class="fas fa-times"></i>
+      </a> -->
+      
+      <div id="sidebar-content" class="sidebar-content">
+        <!-- Feature info will be displayed here -->
+      </div>
+      <div id="image-carousel" class="image-carousel">
+        <div class="image-container">
+          <span id="left-arrow" class="arrow left-arrow">&#10094;</span>
+          <img id="carousel-image" src="" alt="Feature Image" class="sidebar-image">
+          <span id="right-arrow" class="arrow right-arrow">&#10095;</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="controls" style="
+    position: absolute;
+    bottom: 5px;
+    left: 10px;
+    z-index: 1006;
+">
+<img 
+    src="https://tse3.mm.bing.net/th?id=OIP.NGydzHVD99Yzs-6GF6Wm7wHaHa&pid=Api&P=0&h=220" 
+    class="clickable-image" 
+    id="toggleButton" 
+    style="
+        margin: 5px;
+        padding: 10px;
+        font-size: 14px;
+        background-color: transparent;
+        border: 2px solid #007bff; /* Change border color */
+        border-radius: 5px; /* Make it round */
+        cursor: pointer;
+        position: absolute;
+        z-index: 1006;
+        width: 50px;
+        height: 50px;
+        bottom: 5px;
+        transition: all 0.3s ease; /* Smooth transition for hover effects */
+    " 
+    (click)="toggleBackgroundOptions()"
+/>
+<img class="clickable-image" style="width: 100px;">
+
+    
+    <div id="backgroundButtons" class="clickable-image" style="
+      display: none;
+      margin-top: 10px;
+      background-color: white;
+      position: absolute;
+      bottom: 5px;
+      left: 0;
+      z-index: 1006;
+      border: 1px solid #cccccc;
+      border-radius: 10px;
+      padding: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+    ">
+        <!-- Existing layers -->
+        <div id="osmLayer" class="base-layer" style="display: flex; align-items: center; margin-bottom: 5px; width: 250px;" (click)="selectBaseLayer('Google Road Map', 'https://tse3.mm.bing.net/th?id=OIP.NGydzHVD99Yzs-6GF6Wm7wHaHa&pid=Api&P=0&h=220')">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.NGydzHVD99Yzs-6GF6Wm7wHaHa&pid=Api&P=0&h=220" class="clickable-image" style="width: 50px;">
+            <span class="clickable-image" style="margin-left: 10px; font-size: 14px;">Google Road Map</span>
+        </div>
+        <div id="satelliteLayer" class="base-layer" style="display: flex; align-items: center; margin-bottom: 5px;" (click)="selectBaseLayer('Satellite', 'https://tse4.mm.bing.net/th?id=OIP.GS53kSoHnJcKUun_8l7LKAAAAA&pid=Api&P=0&h=220')">
+            <img src="https://tse4.mm.bing.net/th?id=OIP.GS53kSoHnJcKUun_8l7LKAAAAA&pid=Api&P=0&h=220" class="clickable-image" style="width: 50px;">
+            <span class="clickable-image" style="margin-left: 10px; font-size: 14px;">Google Satellite Map</span>
+        </div>
+        <div id="hybridLayer" class="base-layer" style="display: flex; align-items: center; margin-bottom: 5px;" (click)="selectBaseLayer('Hybrid', 'https://s.yimg.com/fz/api/res/1.2/NDloPunI6IDVljQJFlxw_Q--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpbGw7aD05Njt3PTk2/https://tse3.mm.bing.net/th?q=Hybrid+Map&pid=Api&mkt=en-US&cc=US&setlang=en&adlt=strict&t=1')">
+            <img src="https://s.yimg.com/fz/api/res/1.2/NDloPunI6IDVljQJFlxw_Q--~C/YXBwaWQ9c3JjaGRkO2ZpPWZpbGw7aD05Njt3PTk2/https://tse3.mm.bing.net/th?q=Hybrid+Map&pid=Api&mkt=en-US&cc=US&setlang=en&adlt=strict&t=1" class="clickable-image" style="width: 50px;">
+            <span class="clickable-image" style="margin-left: 10px; font-size: 14px;">Google Hybrid Map</span>
+        </div>
+        <div id="terrainLayer" class="base-layer" style="display: flex; align-items: center; margin-bottom: 5px;" (click)="selectBaseLayer('Terrain', 'https://tse3.mm.bing.net/th?id=OIP.KGFiGHK59dNsVBoYUKJxOwAAAA&pid=Api&P=0&h=220')">
+            <img src="https://tse3.mm.bing.net/th?id=OIP.KGFiGHK59dNsVBoYUKJxOwAAAA&pid=Api&P=0&h=220" class="clickable-image" style="width: 50px; height:50px;">
+            <span class="clickable-image" style="margin-left: 10px; font-size: 14px;">Google Terrain Map</span>
+        </div>
+        <div id="trafficLayer" class="base-layer" style="display: flex; align-items: center; margin-bottom: 5px;" (click)="selectBaseLayer('Traffic', 'https://tse3.mm.bing.net/th?id=OIP.pthOihKiuh3X0ehxwHincwHaEE&pid=Api&P=0&h=220')">
+          <img src="https://tse3.mm.bing.net/th?id=OIP.pthOihKiuh3X0ehxwHincwHaEE&pid=Api&P=0&h=220" class="clickable-image" style="width: 50px; height:50px;">
+          <span class="clickable-image" style="margin-left: 10px; font-size: 14px;">Google Traffic Map</span>
+      </div>
+    </div>
+</div>
+
+
+  <img id="NearMe" src="https://tse2.mm.bing.net/th?id=OIP.fV-0Qoc4YYz7r3Qj3RUWuQHaHX&pid=Api&P=0&h=220"(click)="nearMe()" style="z-index: 1006; margin: 5px;
+      padding: 10px;
+      font-size: 4px;
+      background-color: rgb(36, 126, 210);
+      cursor: pointer;
+      position: absolute;
+      z-index: 1001; /* Ensure it appears above other content */
+      width: 50px; /* Adjust size as needed */
+      height: auto; /* Maintain aspect ratio */
+      background-color: transparent;
+      bottom: 80px;
+      right: 0%;">
+      <!-- Back Button -->
+<!-- Back Button -->
+<button id="backButton" class="back-button" (click)="goBack()">
+  Back
+</button>
+

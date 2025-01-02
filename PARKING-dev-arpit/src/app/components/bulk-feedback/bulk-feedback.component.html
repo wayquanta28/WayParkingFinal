@@ -1,0 +1,12 @@
+<div class="popup-overlay"></div>
+<div class="bulk-feedback">
+    <h3>Bulk Feedback</h3>
+    <p>Select a CSV file to upload feedback:</p>
+    <input type="file" (change)="onFileSelect($event)" accept=".csv">
+
+    <!-- Add Submit and Back buttons -->
+    <div class="button-container">
+        <button (click)="submitAllTransactions()">Submit</button>
+        <button (click)="goBack()">Back</button>
+    </div>
+</div>
